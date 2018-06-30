@@ -2,24 +2,32 @@
   "rules": {
     ".read": "true",
     ".write": "true",
-    "businesses": {
-      "$business": {
-        "number": {
-          ".validate": "newData.isString() && newData.val().length == 9 && newData.val().length > 0"
-        },
-        "name": {
-          ".validate": "newData.isNumber() && newData.val().length > 1 && newData.val().length < 49"
-        },
-        "primaryBusiness": {
-          ".validate": "newData.isString() && newData.val().matches(/Fisher|Distributor|Processor|Fish Monger/)"
-        },
-        "address": {
-          ".validate": "newData.isString() && newData.val().length < 50"
-        },
-        "province": {
-          ".validate": "newData.isString() && newData.val().matches(/AB|BC|MB|NB|NL|NS|NT|NU|ON|PE|QC|SK|YT| /)"
-        }
-      }
-    }
+      "businesses": {
+      	"$business": {
+        	"number": {
+          	".validate":"newData.isNumber() && newData.val() % 1 === 0.0 && newData.val() >= 100000000 && newData.val() <= 999999999" 
+        	},
+        	"name": {
+          	".validate": "newData.isString() && newData.val().length > 1 && newData.val().length < 49"
+        	},
+        	"primaryBusiness": {
+          	".validate": "newData.isString() && (newData.val().matches(/Fisher/) 
+										 	 || newData.val().matches(/Processor/) || newData.val().matches(/Fish Monger/) 
+										 	 || newData.val().matches(/Distributor/))"
+        	},
+        	"address": {
+          	".validate": "newData.isString() && newData.val().length < 50"
+        	},
+        	"province": {
+          	".validate": "newData.isString() && (newData.val().matches(/AB/) 
+										 || newData.val().matches(/BC/) || newData.val().matches(/MB/) 
+										 || newData.val().matches(/NB/) || newData.val().matches(/NL/)
+										 || newData.val().matches(/NS/) || newData.val().matches(/NT/)
+		 								 || newData.val().matches(/NU/) || newData.val().matches(/ON/)
+										 || newData.val().matches(/PE/) || newData.val().matches(/QC/)
+										 || newData.val().matches(/SK/) || newData.val().matches(/YT/))"
+        	}
+      	}
+  	}
   }
 }

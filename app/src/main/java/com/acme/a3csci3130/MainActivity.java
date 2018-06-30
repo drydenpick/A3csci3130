@@ -8,15 +8,27 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.firebase.ui.database.*;
-import com.google.firebase.database.*;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * Main Activity displays a list of Businesses stored in Firebase, sets up firebase references for the
+ * app and lets users go to create, and update/delete/read pages for each business.
+ *
+ * @author  Dryden Pick
+ */
 public class MainActivity extends Activity {
 
 
     private ListView businessListView;
     private FirebaseListAdapter<Business> firebaseAdapter;
 
+    /**
+     * Method Sets up Firebase connection and storing it. Also displays List of database entries and attaches
+     * an event listener to each list item.
+     *
+     * @param Bundle savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,16 +64,23 @@ public class MainActivity extends Activity {
         });
     }
 
-    public void createBusinessButton(View v)
-    {
-        Intent intent=new Intent(this, CreateBusinessAcitivity.class);
+    /**
+     * Method starts the Create activity when the create button is selected.
+     * @param View V
+     */
+    public void createBusinessButton(View v) {
+        Intent intent = new Intent(this, CreateBusinessAcitivity.class);
         startActivity(intent);
     }
 
-    private void showDetailView(Business nbusiness)
-    {
+    /**
+     * Method starts the detail activity when a list item is selected.
+     * Method also passes selected business to the detail activity.
+     * @param Business nBusiness
+     */
+    private void showDetailView(Business nBusiness) {
         Intent intent = new Intent(this, DetailViewActivity.class);
-        intent.putExtra("Business", nbusiness);
+        intent.putExtra("Business", nBusiness);
         startActivity(intent);
     }
 

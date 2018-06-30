@@ -9,12 +9,13 @@ import java.util.Map;
 /**
  * Class that defines how the data will be stored in the
  * Firebase database. This is converted to a JSON format
+ * @author Dryden Pick
  */
 
 public class Business implements Serializable {
 
     public String businessID;
-    public String number;
+    public int number;
     public String name;
     public String primaryBusiness;
     public String address;
@@ -26,7 +27,7 @@ public class Business implements Serializable {
 
     public Business(String businessID,String number, String name, String primaryBusiness, String address, String province){
         this.businessID = businessID;
-        this.number = number;
+        this.number = Integer.parseInt(number);
         this.name = name;
         this.primaryBusiness = primaryBusiness;
         this.address = address;
